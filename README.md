@@ -1,4 +1,4 @@
-# php-Log-in-Log-out-Demo
+# php Registration and Login Demo
 
 This Demo illustrate the process of store and retrive data from mysql database
 
