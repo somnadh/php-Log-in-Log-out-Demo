@@ -1,6 +1,5 @@
-
-<head>
-<title>Registration backend</title>
+ <head>
+<title>user validation backend</title>
     
 </head>
 <table align="center" border="0" width="70%">
@@ -8,36 +7,26 @@
     <tr>       
         <td height="350" colspan="2" align="center" style="background:gold">
 <?php
-
 $n=$_POST['txtUser'];
-
-$p=$_POST['txtPwd'];
-
+$w=$_POST['txtPwd'];
 
 include("database.php");
-
-$query="insert into user(user,pass) values('$n','$p')";
-
-$rs=mysqli_query($conn,$query);
-if($rs)
-	{    
-
-		echo "<h1 align=center>User created successfully!!!</h1>";
-        echo "<a href=index.html><input type=button value=Login-Here></a>";
-        }
-else
+	$rs=mysqli_query($conn,"select * from admin where user='$n' and pass='$w' ");
+	if(mysqli_num_rows($rs)<1)
 	{
-        echo "<h1 align=center>Ufffffffffffff!!!</h1>";
-        echo "Error: " . $query . "<br>" . $conn->error;
+		echo "<h1 align=center>Failed login!!!</h1>";
+		exit;
 	}
-?>
+	else
+	{
+        header("Location: adminhome.html");
+		exit;
+	}
 
+?>
 </td>
 </tr>
 <tr><td colspan="2" align="center" style="background:lime;color:indigo">2020. All Rights Reserved</td></tr>
 </table>
-
-
-
 
 

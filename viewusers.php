@@ -7,37 +7,50 @@
     <tr>       
         <td height="350" colspan="2" align="center" style="background:gold">
 <?php
-$n=$_POST['txtUser'];
-$w=$_POST['txtPwd'];
-
 include("database.php");
-	$rs=mysqli_query($conn,"select * from user where user='$n' and pass='$w' ");
-	if(mysqli_num_rows($rs)<1)
-	{
-		echo "<h1 align=center>Failed login!!!</h1>";
-		exit;
-	}
-	else
-	{
-		$row = mysqli_fetch_array($rs);
-		if($row['status']=='Block')
-		{
-			echo "<h1 align=center>sorry $n your Blocked contact admin</h1>";
-		}
-		else{
-			echo "<h1 align=center>WelCome $n </h1>";
-			exit;
-		}
-		
-	}
+$result = mysqli_query($conn,"SELECT * FROM user");
+echo "<table border='1'>
+
+<tr>
+
+<th>Id</th>
+
+<th>UserName</th>
+
+<th>Status</th>
+
+</tr>";
+
+ 
+
+while($row = mysqli_fetch_array($result))
+
+  {
+
+  echo "<tr>";
+$id=$row['userid'] ;
+  echo "<td>" . $row['userid'] . "</td>";
+
+  echo "<td>" . $row['user'] . "</td>";
+
+  echo "<td>" . $row['status'] . "</td>";
+
+
+echo "<td> <a href=blockuser.php?id=$id> Block User </a></td>";
+  echo "</tr>";
+
+  }
+
+echo "</table>";
+
+ 
+
+
 
 ?>
 </td>
 </tr>
 <tr><td colspan="2" align="center" style="background:lime;color:indigo">2020. All Rights Reserved</td></tr>
 </table>
-
-
-
 
 
